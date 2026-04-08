@@ -1,0 +1,1 @@
+import{n as e}from"./chunk-BneVvdWh.js";import{t}from"./react-B_0iYUWB.js";import{t as n}from"./jsx-runtime-fcfuQg7E.js";import{n as r,t as i}from"./cn-By5PeHD1.js";function a({className:e,...t}){return(0,o.jsx)(`section`,{className:i(`py-16 md:py-24`,e),...t})}var o,s=e((()=>{t(),r(),o=n(),a.__docgenInfo={description:``,methods:[],displayName:`Section`}}));export{s as n,a as t};
