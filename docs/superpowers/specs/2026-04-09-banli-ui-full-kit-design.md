@@ -257,7 +257,7 @@ Alpha 设计：
 - `0.1.0`：收敛 API、补齐 a11y/测试、文档完善
 
 发布物：
-- npm 包（如要发布到 npm，需确认包名与 scope）
+- npm 包：`banli-ui`
 - GitHub Pages Storybook（已在用）
 - CHANGELOG（按 conventional commits 生成或手写）
 
@@ -271,7 +271,12 @@ Alpha 设计：
 ---
 
 ## 13. 未决问题（需要你确认）
-1. npm 包名：`banli-ui` 还是 `@cn111/banli-ui`（建议带 scope）
-2. Icon 方案：`lucide-react` 还是自建 SVG sprite
-3. Tree/Cascader 的 Alpha 最小能力边界（是否必须支持搜索/异步加载）
+已确认：
+1. npm 包名：`banli-ui`
+2. Icon 方案：自建 SVG sprite（配合 `Icon` 组件封装，支持按需引用）
+3. Tree / Cascader：Alpha 阶段**必须支持搜索与异步加载**
 
+落地补充（Tree/Cascader）：
+- 搜索：提供 `searchValue/onSearchValueChange`（受控）与 `defaultSearchValue`（非受控）；支持自定义过滤函数 `filterOption`
+- 异步加载：支持 `loadData(node) => Promise<void>` / `onLoadData`，并提供 `loadingKeys` 或 `isLoading(node)` 以呈现节点 loading
+- 无障碍：键盘上下左右导航、展开折叠、Enter 选择；aria-tree/aria-expanded/aria-selected 等属性正确
