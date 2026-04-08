@@ -34,17 +34,44 @@ body {
     Arial,
     'Apple Color Emoji',
     'Segoe UI Emoji';
-  @apply bg-aivent-bg text-aivent-text antialiased;
+  @apply bg-banli-bg text-banli-text antialiased;
 }
 
 /* Motion tokens（统一动效时长/缓动）
    组件层尽量只使用 transform/opacity 动效，避免 layout 抖动。 */
 :root {
+  /* BanLi theme tokens (light mode default). */
+  --banli-bg: #ffffff;
+  --banli-panel: #f8fafc;
+  --banli-primary: #7c3aed;
+  --banli-secondary: #22d3ee;
+  --banli-text: rgba(11, 18, 32, 0.92);
+  --banli-muted: rgba(11, 18, 32, 0.62);
+  --banli-border: rgba(11, 18, 32, 0.12);
+
+  /* BanLi motion tokens */
+  --banli-motion-duration-fast: 150ms;
+  --banli-motion-duration: 220ms;
+  --banli-motion-duration-slow: 320ms;
+  --banli-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --banli-motion-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+
   --aivent-motion-duration-fast: 150ms;
   --aivent-motion-duration: 220ms;
   --aivent-motion-duration-slow: 320ms;
   --aivent-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --aivent-motion-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* Dark mode (opt-in via <html class="dark">). Keep current BanLi UI look here. */
+.dark {
+  --banli-bg: #050816;
+  --banli-panel: #0b1024;
+  --banli-primary: #7c3aed;
+  --banli-secondary: #22d3ee;
+  --banli-text: rgba(255, 255, 255, 0.86);
+  --banli-muted: rgba(255, 255, 255, 0.65);
+  --banli-border: rgba(255, 255, 255, 0.12);
 }
 
 /* 全局动效降级开关（由 AiventMotionProvider 写入 data-aivent-motion） */

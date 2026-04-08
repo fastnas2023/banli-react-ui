@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default {
+  darkMode: 'class',
   content: [
     './index.html',
     './src/**/*.{ts,tsx}',
@@ -9,6 +10,15 @@ export default {
   theme: {
     extend: {
       colors: {
+        banli: {
+          bg: 'var(--banli-bg)',
+          panel: 'var(--banli-panel)',
+          primary: 'var(--banli-primary)',
+          secondary: 'var(--banli-secondary)',
+          text: 'var(--banli-text)',
+          muted: 'var(--banli-muted)',
+          border: 'var(--banli-border)',
+        },
         aivent: {
           bg: '#050816',
           panel: '#0b1024',
@@ -30,10 +40,15 @@ export default {
         fast: 'var(--aivent-motion-duration-fast)',
         base: 'var(--aivent-motion-duration)',
         slow: 'var(--aivent-motion-duration-slow)',
+        'banli-fast': 'var(--banli-motion-duration-fast)',
+        'banli-base': 'var(--banli-motion-duration)',
+        'banli-slow': 'var(--banli-motion-duration-slow)',
       },
       transitionTimingFunction: {
         'aivent-out': 'var(--aivent-motion-ease-out)',
         'aivent-in': 'var(--aivent-motion-ease-in)',
+        'banli-out': 'var(--banli-motion-ease-out)',
+        'banli-in': 'var(--banli-motion-ease-in)',
       },
     },
   },

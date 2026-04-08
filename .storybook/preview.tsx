@@ -5,11 +5,17 @@ import { AiventMotionProvider } from '../src/motion/provider'
 
 const preview: Preview = {
   decorators: [
-    (Story) => (
-      <AiventMotionProvider motion="auto">
-        <Story />
-      </AiventMotionProvider>
-    ),
+    (Story) => {
+      React.useEffect(() => {
+        // Keep existing visual style as default. Stories can override if needed.
+        document.documentElement.classList.add('dark')
+      }, [])
+      return (
+        <AiventMotionProvider motion="auto">
+          <Story />
+        </AiventMotionProvider>
+      )
+    },
   ],
   parameters: {
     controls: {
@@ -29,4 +35,3 @@ const preview: Preview = {
 }
 
 export default preview
-
