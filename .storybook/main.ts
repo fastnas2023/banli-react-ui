@@ -12,6 +12,12 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-onboarding"
   ],
-  "framework": "@storybook/react-vite"
+  "framework": "@storybook/react-vite",
+  async viteFinal(cfg) {
+    // GitHub Pages 等子路径部署需要设置 base，否则静态资源路径会 404。
+    // 本地 dev 不受影响；构建时可通过环境变量覆盖。
+    const base = process.env.STORYBOOK_BASE_PATH ?? '/'
+    return { ...cfg, base }
+  }
 };
 export default config;

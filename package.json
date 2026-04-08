@@ -11,7 +11,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy-storybook": "STORYBOOK_BASE_PATH=/banli-react-ui/ npm run build-storybook && gh-pages -d storybook-static -b gh-pages"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -45,6 +46,7 @@
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "gh-pages": "^6.3.0",
     "globals": "^17.4.0",
     "jsdom": "^29.0.2",
     "playwright": "^1.59.1",
