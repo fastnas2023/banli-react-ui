@@ -4,11 +4,12 @@ import { HeroSliderText } from './HeroSliderText'
 import { HeroStatic } from './HeroStatic'
 import { HeroVideo } from './HeroVideo'
 
-const bg1 = new URL('../../../assets/images/demo/homepage-1.webp', import.meta.url).toString()
-const bg2 = new URL('../../../assets/images/demo/homepage-2.webp', import.meta.url).toString()
-const bg3 = new URL('../../../assets/images/demo/homepage-3.webp', import.meta.url).toString()
-const bg4 = new URL('../../../assets/images/demo/homepage-4.webp', import.meta.url).toString()
-const bg5 = new URL('../../../assets/images/demo/homepage-5.webp', import.meta.url).toString()
+// 使用模板原始背景图（非页面截图），展示更接近官网效果
+const bg1 = new URL('../../../assets/images/background/1.webp', import.meta.url).toString()
+const bg2 = new URL('../../../assets/images/background/2.webp', import.meta.url).toString()
+const bg3 = new URL('../../../assets/images/background/3.webp', import.meta.url).toString()
+const bg4 = new URL('../../../assets/images/background/4.webp', import.meta.url).toString()
+const bg5 = new URL('../../../assets/images/background/5.webp', import.meta.url).toString()
 const video2 = new URL('../../../assets/video/2.mp4', import.meta.url).toString()
 
 const meta: Meta = { title: 'Sections/Hero' }
