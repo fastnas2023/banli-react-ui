@@ -11,15 +11,29 @@ export function ContactInfo() {
         <div className="grid gap-4 md:grid-cols-3">
           <div className="rounded-xl2 border border-aivent-border bg-white/5 p-6">
             <div className="text-sm font-bold text-white">{m.locationLabel}</div>
-            <div className="mt-2 text-sm text-aivent-muted">San Francisco, CA</div>
+            <a
+              className="mt-2 inline-block text-sm text-aivent-muted hover:text-white transition"
+              href="https://www.cn111.net"
+              target="_blank"
+              rel="noreferrer"
+            >
+              www.cn111.net
+            </a>
           </div>
           <div className="rounded-xl2 border border-aivent-border bg-white/5 p-6">
             <div className="text-sm font-bold text-white">{m.emailLabel}</div>
-            <div className="mt-2 text-sm text-aivent-muted">hello@aivent.example</div>
+            <div className="mt-2 text-sm text-aivent-muted">Jason Zhang</div>
           </div>
           <div className="rounded-xl2 border border-aivent-border bg-white/5 p-6">
             <div className="text-sm font-bold text-white">{m.phoneLabel}</div>
-            <div className="mt-2 text-sm text-aivent-muted">+1 (555) 123-4567</div>
+            <a
+              className="mt-2 inline-block text-sm text-aivent-muted hover:text-white transition"
+              href="https://www.cn111.net"
+              target="_blank"
+              rel="noreferrer"
+            >
+              WWW.CN111.NET
+            </a>
           </div>
         </div>
       </Container>

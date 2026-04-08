@@ -4,6 +4,8 @@ import { Container } from '../primitives/Container'
 
 export function Footer() {
   const m = useAiventMessages().footer
+  const authorName = 'Jason Zhang'
+  const authorUrl = 'https://www.cn111.net'
   const LINKS: Array<{ title: string; items: Array<{ label: string; href?: string }> }> = [
     {
       title: m.columns.event,
@@ -52,7 +54,19 @@ export function Footer() {
 
         <div className="flex flex-col gap-2 border-t border-aivent-border py-6 text-xs text-aivent-muted md:flex-row md:items-center md:justify-between">
           <div>
-            © {new Date().getFullYear()} {m.brand}. {m.rights}
+            © {new Date().getFullYear()} {m.brand}. {m.rights}{' '}
+            <span className="mx-2 opacity-50">·</span>
+            <span>
+              {authorName}{' '}
+              <a
+                className="text-aivent-muted hover:text-white transition"
+                href={authorUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                www.cn111.net
+              </a>
+            </span>
           </div>
           <div>{m.builtWith}</div>
         </div>

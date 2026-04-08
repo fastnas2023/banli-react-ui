@@ -30,14 +30,14 @@ export const ChineseHome: Story = {
           },
         },
         hero: {
-          badge: 'AI 峰会',
-          primaryCta: '立即购票',
-          secondaryCta: '查看日程',
+          badge: 'BanLi 组件库',
+          primaryCta: '开始使用',
+          secondaryCta: '查看组件',
         },
         sections: {
           whyAttend: { eyebrow: '为何参加', title: '你将获得什么' },
           speakers: { eyebrow: '嘉宾', title: '认识行业领袖' },
-          schedule: { eyebrow: '日程', title: '5 天 AI 盛会' },
+          schedule: { eyebrow: '日程', title: '组件与页面示例' },
           tickets: {
             eyebrow: '票务',
             title: '选择你的通行证',
@@ -53,7 +53,7 @@ export const ChineseHome: Story = {
             checkout: '去结算',
           },
           news: { eyebrow: '资讯', title: '最新动态' },
-          contact: { eyebrow: '联系', title: '和我们聊聊', intro: '想合作、赞助或咨询票务？给我们留言。' },
+          contact: { eyebrow: '联系', title: '和我们聊聊', intro: '有关于 BanLi UI 的问题？给我们留言。' },
         },
         contactForm: {
           fields: { name: '姓名', email: '邮箱', message: '消息' },
@@ -68,7 +68,7 @@ export const ChineseHome: Story = {
           helper: '提交将调用 onSubmit 回调，方便你接入真实接口。',
         },
         footer: {
-          description: '把 AIvent 模板重构为可复用的 React 组件库。',
+          description: 'BanLi UI：可复用的 React 组件库（Storybook 展示）。',
           columns: { event: '大会', resources: '资源' },
           rights: '保留所有权利。',
           builtWith: '基于 React + Tailwind + Storybook 构建。',
@@ -81,10 +81,10 @@ export const ChineseHome: Story = {
           <HeroVideo
             posterImage={bg1}
             videoSrc={video2}
-            title="AI SUMMIT 2025"
-            subtitle="面向构建者的未来智能大会。"
-            dateText="2025.10.1–10.5"
-            locationText="旧金山"
+            title="BANLI UI"
+            subtitle="面向产品与开发者的 React UI 组件库演示。"
+            dateText="WWW.CN111.NET"
+            locationText="Jason Zhang"
             countdownTarget={Date.now() + 1000 * 60 * 60 * 24 * 12}
           />
         }
@@ -92,4 +92,3 @@ export const ChineseHome: Story = {
     </AiventI18nProvider>
   ),
 }
-

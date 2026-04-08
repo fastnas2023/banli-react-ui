@@ -89,7 +89,7 @@ export const enMessages: AiventMessages = {
   },
   footer: {
     brand: 'BanLi',
-    description: 'A modern event template, rebuilt as a reusable React component library.',
+    description: 'BanLi UI — a reusable React component library with Storybook.',
     columns: { event: 'Event', resources: 'Resources' },
     links: {
       about: 'About',
@@ -103,14 +103,14 @@ export const enMessages: AiventMessages = {
     builtWith: 'Built with React + Tailwind + Storybook.',
   },
   hero: {
-    badge: 'AI Summit',
-    primaryCta: 'Get Tickets',
-    secondaryCta: 'View Schedule',
+    badge: 'BanLi UI',
+    primaryCta: 'Get Started',
+    secondaryCta: 'View Components',
   },
   sections: {
     whyAttend: { eyebrow: 'Why Attend', title: "What you’ll gain" },
     speakers: { eyebrow: 'Speakers', title: 'Meet the visionaries' },
-    schedule: { eyebrow: 'Schedule', title: '5 Days of AI excellence' },
+    schedule: { eyebrow: 'Schedule', title: 'Plan your experience' },
     tickets: {
       eyebrow: 'Tickets',
       title: 'Choose your pass',
@@ -126,7 +126,7 @@ export const enMessages: AiventMessages = {
       checkout: 'Checkout',
     },
     news: { eyebrow: 'News', title: 'Latest updates' },
-    contact: { eyebrow: 'Contact', title: "Let’s talk", intro: 'Want to partner, sponsor, or ask about tickets? Leave us a message.' },
+    contact: { eyebrow: 'Contact', title: "Let’s talk", intro: 'Questions about BanLi UI? Leave a message and we’ll get back to you.' },
   },
   contactForm: {
     fields: { name: 'Name', email: 'Email', message: 'Message' },
@@ -141,9 +141,9 @@ export const enMessages: AiventMessages = {
     helper: 'Submitting will call the onSubmit callback so you can wire up your API.',
   },
   contactInfo: {
-    locationLabel: 'Location',
-    emailLabel: 'Email',
-    phoneLabel: 'Phone',
+    locationLabel: 'Website',
+    emailLabel: 'Author',
+    phoneLabel: 'Contact',
   },
 }
 

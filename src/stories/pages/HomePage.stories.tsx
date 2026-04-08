@@ -14,7 +14,7 @@ const meta: Meta<typeof HomePage> = {
 export default meta
 type Story = StoryObj<typeof HomePage>
 
-// 使用模板原始背景图（非页面截图），展示更接近官网效果
+// 演示用静态资源（背景图/视频），用于 Storybook 预览
 const bg1 = new URL('../../assets/images/background/1.webp', import.meta.url).toString()
 const bg2 = new URL('../../assets/images/background/2.webp', import.meta.url).toString()
 const bg3 = new URL('../../assets/images/background/3.webp', import.meta.url).toString()
@@ -29,10 +29,10 @@ export const Main_VideoBackground: Story = {
         <HeroVideo
           posterImage={bg1}
           videoSrc={video2}
-          title="AI SUMMIT 2025"
-          subtitle="The future of intelligence — built for builders."
-          dateText="October 1–5, 2025"
-          locationText="San Francisco, CA"
+          title="BANLI UI"
+          subtitle="A React UI component library demo (Storybook)."
+          dateText="WWW.CN111.NET"
+          locationText="Jason Zhang"
           countdownTarget={Date.now() + 1000 * 60 * 60 * 24 * 12}
         />
       }
@@ -46,9 +46,9 @@ export const SliderBackground: Story = {
       hero={
         <HeroSlider
           slides={[
-            { image: bg2, title: 'Pioneering breakthroughs in AI', subtitle: 'Robotics and digital human evolution.' },
-            { image: bg4, title: 'Unleashing human potential', subtitle: 'Hands-on workshops with world-class speakers.' },
-            { image: bg5, title: 'The future intelligent', subtitle: 'Ethics, policy, and what comes next.' },
+            { image: bg2, title: 'Design system foundations', subtitle: 'Tokens, spacing, and composition.' },
+            { image: bg4, title: 'Component primitives', subtitle: 'Button, Dialog, Drawer, Toast, and more.' },
+            { image: bg5, title: 'Patterns & pages', subtitle: 'Hero, sections, and page compositions.' },
           ]}
         />
       }
@@ -62,10 +62,10 @@ export const StaticBackground: Story = {
       hero={
         <HeroStatic
           backgroundImage={bg3}
-          title="THE FUTURE INTELLIGENT"
-          subtitle="Join thought leaders, developers, researchers, and founders as we explore how AI is reshaping industries."
-          dateText="October 1–5, 2025"
-          locationText="San Francisco, CA"
+          title="BANLI UI"
+          subtitle="Reusable components, pages, and motion presets."
+          dateText="WWW.CN111.NET"
+          locationText="Jason Zhang"
         />
       }
     />
@@ -78,9 +78,9 @@ export const SliderText: Story = {
       hero={
         <HeroSliderText
           slides={[
-            { title: 'Innovate. Integrate. Inspire.', subtitle: 'A 5-day gathering for AI builders and leaders.', image: bg4 },
-            { title: 'Design human-centered AI', subtitle: 'From UX to ethics, build products that matter.', image: bg2 },
-            { title: 'Beyond text: multimodal AI', subtitle: 'Image, video, and 3D generation—what’s next?', image: bg5 },
+            { title: 'Build fast. Ship clean.', subtitle: 'Composable primitives for product teams.', image: bg4 },
+            { title: 'Motion you can control', subtitle: 'Global motion modes that respect reduced-motion.', image: bg2 },
+            { title: 'Storybook-first', subtitle: 'Document, test, and iterate with confidence.', image: bg5 },
           ]}
         />
       }
@@ -95,10 +95,10 @@ export const VideoBackground_Countdown: Story = {
         <HeroVideo
           posterImage={bg4}
           videoSrc={video2}
-          title="Innovate. Integrate. Inspire."
-          subtitle="Get ready for 5 days of keynotes, labs, and networking."
-          dateText="October 1–5, 2025"
-          locationText="San Francisco, CA"
+          title="BANLI UI"
+          subtitle="Polished components for real products."
+          dateText="WWW.CN111.NET"
+          locationText="Jason Zhang"
           countdownTarget={Date.now() + 1000 * 60 * 60 * 24 * 3}
         />
       }

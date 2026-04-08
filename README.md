@@ -1,6 +1,9 @@
-# AIvent React 组件库（Storybook + Tailwind）
+# BanLi React UI（Storybook + Tailwind）
 
-把 AIvent HTML 模板重构为 **React + TypeScript 组件库**，并使用 **Storybook** 展示；样式使用 **Tailwind** 重写；静态资源（图片/字体）本地化以支持离线运行。
+BanLi UI：**React + TypeScript** 组件库示例，使用 **Storybook** 展示，样式基于 **Tailwind**；静态资源（图片/字体）本地化以支持离线运行。
+
+作者：Jason Zhang  
+官网：https://www.cn111.net
 
 ## 运行
 
