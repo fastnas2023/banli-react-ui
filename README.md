@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# AIvent React 组件库（Storybook + Tailwind）
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+把 AIvent HTML 模板重构为 **React + TypeScript 组件库**，并使用 **Storybook** 展示；样式使用 **Tailwind** 重写；静态资源（图片/字体）本地化以支持离线运行。
 
-Currently, two official plugins are available:
+## 运行
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+安装依赖：
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+启动 Storybook：
+```bash
+npm run storybook
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+运行测试：
+```bash
+npm run test:run
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+构建静态 Storybook：
+```bash
+npm run build-storybook
+```
+
+## 目录结构（简要）
+- `src/components/primitives`：Button、Container、Section、Badge 等
+- `src/components/layout`：Header/Nav/Footer
+- `src/components/sections`：Hero、WhyAttend、Speakers、Schedule、Tickets、News、Contact
+- `src/components/pages`：Home/Tickets/News/NewsSingle/Contact（页面级组合）
+- `src/assets`：图片与字体（离线资源）
+
+## 字体策略（本地优先 + Google Fonts 兼容）
+默认使用 `src/assets/fonts/Manrope/Manrope-Variable.woff2`（离线可用）。
+
+如果你的宿主项目希望走 Google Fonts（CDN），在宿主 HTML 额外添加：
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
 ```
