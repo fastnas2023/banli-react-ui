@@ -88,7 +88,7 @@ export const enMessages: AiventMessages = {
     },
   },
   footer: {
-    brand: 'AIvent',
+    brand: 'BanLi',
     description: 'A modern event template, rebuilt as a reusable React component library.',
     columns: { event: 'Event', resources: 'Resources' },
     links: {
