@@ -42,7 +42,14 @@ export function Header({
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
           <a href="#home" className="flex items-center gap-3">
-            <img src={logo} alt="BanLi" className="h-7 w-auto" />
+            <img
+              src={logo}
+              alt="BanLi"
+              className="h-8 w-8 translate-y-[1px]"
+            />
+            <span className="bg-gradient-to-r from-aivent-primary to-aivent-secondary bg-clip-text text-xl font-extrabold tracking-[0.18em] text-transparent">
+              BANLI
+            </span>
           </a>
 
           <div className="hidden lg:block">
