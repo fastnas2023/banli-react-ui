@@ -9,6 +9,7 @@ const bg2 = new URL('../../../assets/images/demo/homepage-2.webp', import.meta.u
 const bg3 = new URL('../../../assets/images/demo/homepage-3.webp', import.meta.url).toString()
 const bg4 = new URL('../../../assets/images/demo/homepage-4.webp', import.meta.url).toString()
 const bg5 = new URL('../../../assets/images/demo/homepage-5.webp', import.meta.url).toString()
+const video2 = new URL('../../../assets/video/2.mp4', import.meta.url).toString()
 
 const meta: Meta = { title: 'Sections/Hero' }
 export default meta
@@ -30,7 +31,7 @@ export const VideoBackground: Story = {
   render: () => (
     <HeroVideo
       posterImage={bg1}
-      // 离线演示：不提供 videoSrc，会自动退化为静态背景
+      videoSrc={video2}
       title="AI SUMMIT 2025"
       subtitle="The future of intelligence — built for builders."
       dateText="October 1–5, 2025"
@@ -68,6 +69,7 @@ export const VideoBackgroundWithCountdown: Story = {
   render: () => (
     <HeroVideo
       posterImage={bg4}
+      videoSrc={video2}
       title="Innovate. Integrate. Inspire."
       subtitle="Get ready for 5 days of keynotes, labs, and networking."
       dateText="October 1–5, 2025"
@@ -76,4 +78,3 @@ export const VideoBackgroundWithCountdown: Story = {
     />
   ),
 }
-
