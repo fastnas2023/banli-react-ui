@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useAiventMessages } from '../../i18n/provider'
 import { Container } from '../primitives/Container'
 import { Section } from '../primitives/Section'
 
@@ -12,14 +13,15 @@ const ITEMS = [
 ]
 
 export function WhyAttendGrid() {
+  const m = useAiventMessages().sections.whyAttend
   return (
     <Section>
       <Container>
         <div className="flex items-end justify-between gap-6">
           <div>
-            <div className="text-sm font-semibold text-aivent-secondary">Why Attend</div>
+            <div className="text-sm font-semibold text-aivent-secondary">{m.eyebrow}</div>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              What you’ll gain
+              {m.title}
             </h2>
           </div>
         </div>
@@ -40,4 +42,3 @@ export function WhyAttendGrid() {
     </Section>
   )
 }
-

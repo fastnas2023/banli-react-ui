@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '../../../lib/cn'
+import { useAiventMessages } from '../../../i18n/provider'
 import { Button } from '../../primitives/Button'
 import { Container } from '../../primitives/Container'
 import { Section } from '../../primitives/Section'
@@ -11,17 +12,18 @@ const DEFAULT_TICKETS: Ticket[] = [
 ]
 
 export function TicketsStyle2({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[] }) {
+  const m = useAiventMessages().sections.tickets
   return (
     <Section>
       <Container>
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-xl2 border border-aivent-border bg-white/5 p-6">
-            <div className="text-sm font-semibold text-aivent-secondary">Tickets</div>
+            <div className="text-sm font-semibold text-aivent-secondary">{m.eyebrow}</div>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              Ticket Style 2
+              {m.style2Title}
             </h2>
             <p className="mt-3 text-sm text-aivent-muted">
-              A compact layout suitable for checkout-style sections.
+              {m.style2Subtitle}
             </p>
 
             <div className="mt-8 space-y-3">
@@ -41,7 +43,7 @@ export function TicketsStyle2({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[
                     <div className="text-right">
                       <div className="text-xl font-extrabold text-white">{t.price}</div>
                       <Button size="sm" variant={t.highlight ? 'primary' : 'ghost'} className="mt-2">
-                        Select
+                        {m.select}
                       </Button>
                     </div>
                   </div>
@@ -51,25 +53,25 @@ export function TicketsStyle2({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[
           </div>
 
           <div className="rounded-xl2 border border-aivent-border bg-black/30 p-6">
-            <div className="text-sm font-bold text-white">Cart</div>
+            <div className="text-sm font-bold text-white">{m.cart}</div>
             <div className="mt-4 space-y-3 text-sm text-aivent-muted">
               <div className="flex items-center justify-between">
                 <span>Standard</span>
                 <span>$299</span>
               </div>
               <div className="flex items-center justify-between">
-                <span>VAT</span>
+                <span>{m.vat}</span>
                 <span>$0</span>
               </div>
               <div className="h-px bg-aivent-border" />
               <div className="flex items-center justify-between text-white">
-                <span className="font-bold">Total</span>
+                <span className="font-bold">{m.total}</span>
                 <span className="font-extrabold">$299</span>
               </div>
             </div>
 
             <Button className="mt-6 w-full" size="lg">
-              Checkout
+              {m.checkout}
             </Button>
           </div>
         </div>
@@ -77,4 +79,3 @@ export function TicketsStyle2({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[
     </Section>
   )
 }
-

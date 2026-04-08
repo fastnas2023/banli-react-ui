@@ -1,32 +1,40 @@
 import * as React from 'react'
 import logo from '../../assets/images/logo.webp'
 import { cn } from '../../lib/cn'
+import { deepMerge, type PartialDeep } from '../../i18n'
+import { useAiventMessages } from '../../i18n/provider'
 import { Button } from '../primitives/Button'
 import { Container } from '../primitives/Container'
 import { MobileMenu } from './MobileMenu'
 import { Nav, type NavItem } from './Nav'
 
-const DEFAULT_ITEMS: NavItem[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Speakers', href: '#speakers' },
-  { label: 'Schedule', href: '#schedule' },
-  { label: 'Tickets', href: '#tickets' },
-  { label: 'News', href: '#news' },
-  { label: 'Contact', href: '#contact' },
-]
-
 export function Header({
-  items = DEFAULT_ITEMS,
-  ctaLabel = 'Get Tickets',
+  items,
+  ctaLabel,
   onCtaClick,
   className,
+  messages,
 }: {
   items?: NavItem[]
   ctaLabel?: string
   onCtaClick?: () => void
   className?: string
+  messages?: PartialDeep<ReturnType<typeof useAiventMessages>['header']>
 }) {
+  const base = useAiventMessages().header
+  const m = React.useMemo(() => deepMerge(base, messages), [base, messages])
+  const defaultItems = React.useMemo<NavItem[]>(
+    () => [
+      { label: m.nav.home, href: '#home' },
+      { label: m.nav.about, href: '#about' },
+      { label: m.nav.speakers, href: '#speakers' },
+      { label: m.nav.schedule, href: '#schedule' },
+      { label: m.nav.tickets, href: '#tickets' },
+      { label: m.nav.news, href: '#news' },
+      { label: m.nav.contact, href: '#contact' },
+    ],
+    [m]
+  )
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -38,7 +46,7 @@ export function Header({
           </a>
 
           <div className="hidden lg:block">
-            <Nav items={items} />
+            <Nav items={items ?? defaultItems} />
           </div>
 
           <div className="flex items-center gap-2">
@@ -50,13 +58,13 @@ export function Header({
                   onCtaClick?.()
                 }}
               >
-                {ctaLabel}
+                {ctaLabel ?? m.ctaLabel}
               </Button>
             </div>
 
             <button
               className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-aivent-border bg-white/5 hover:bg-white/10"
-              aria-label="Open menu"
+              aria-label={m.openMenuAriaLabel}
               aria-expanded={open}
               onClick={() => setOpen(true)}
             >
@@ -66,8 +74,7 @@ export function Header({
         </div>
       </Container>
 
-      <MobileMenu open={open} items={items} onClose={() => setOpen(false)} />
+      <MobileMenu open={open} items={items ?? defaultItems} onClose={() => setOpen(false)} />
     </header>
   )
 }
-

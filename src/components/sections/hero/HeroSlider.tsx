@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '../../../lib/cn'
+import { useAiventMessages } from '../../../i18n/provider'
 import { Badge } from '../../primitives/Badge'
 import { Button } from '../../primitives/Button'
 import { Container } from '../../primitives/Container'
@@ -17,6 +18,7 @@ export function HeroSlider({
   slides: HeroSlide[]
   className?: string
 }) {
+  const m = useAiventMessages().hero
   const scrollerRef = React.useRef<HTMLDivElement | null>(null)
   const [index, setIndex] = React.useState(0)
 
@@ -45,7 +47,7 @@ export function HeroSlider({
             <Container>
               <div className="relative flex h-full items-center py-16">
                 <div className="max-w-2xl">
-                  <Badge>AI Summit</Badge>
+                  <Badge>{m.badge}</Badge>
                   <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
                     {s.title}
                   </h1>
@@ -55,10 +57,10 @@ export function HeroSlider({
 
                   <div className="mt-8 flex flex-wrap items-center gap-3">
                     <Button variant="primary" size="lg">
-                      Get Tickets
+                      {m.primaryCta}
                     </Button>
                     <Button variant="ghost" size="lg">
-                      View Schedule
+                      {m.secondaryCta}
                     </Button>
                   </div>
                 </div>
@@ -105,4 +107,3 @@ export function HeroSlider({
     </section>
   )
 }
-

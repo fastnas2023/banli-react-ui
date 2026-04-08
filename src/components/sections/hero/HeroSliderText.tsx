@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '../../../lib/cn'
+import { useAiventMessages } from '../../../i18n/provider'
 import { Badge } from '../../primitives/Badge'
 import { Button } from '../../primitives/Button'
 import { Container } from '../../primitives/Container'
@@ -12,6 +13,7 @@ export type HeroTextSlide = {
 }
 
 export function HeroSliderText({ slides, className }: { slides: HeroTextSlide[]; className?: string }) {
+  const m = useAiventMessages().hero
   const [index, setIndex] = React.useState(0)
 
   React.useEffect(() => {
@@ -34,7 +36,7 @@ export function HeroSliderText({ slides, className }: { slides: HeroTextSlide[];
       <Container>
         <div className="relative py-20 md:py-28">
           <div className="max-w-2xl">
-            <Badge>{s.kicker ?? 'A Global Gathering of AI Innovators'}</Badge>
+            <Badge>{s.kicker ?? m.badge}</Badge>
             <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-white md:text-6xl">{s.title}</h1>
             {s.subtitle ? (
               <p className="mt-4 text-base leading-relaxed text-aivent-muted md:text-lg">{s.subtitle}</p>
@@ -42,10 +44,10 @@ export function HeroSliderText({ slides, className }: { slides: HeroTextSlide[];
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button variant="primary" size="lg">
-                Get Tickets
+                {m.primaryCta}
               </Button>
               <Button variant="ghost" size="lg">
-                View Schedule
+                {m.secondaryCta}
               </Button>
             </div>
 
@@ -68,4 +70,3 @@ export function HeroSliderText({ slides, className }: { slides: HeroTextSlide[];
     </section>
   )
 }
-

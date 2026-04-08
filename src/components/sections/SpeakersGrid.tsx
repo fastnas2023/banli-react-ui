@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useAiventMessages } from '../../i18n/provider'
 import { Container } from '../primitives/Container'
 import { Section } from '../primitives/Section'
 
@@ -27,14 +28,15 @@ const DEFAULT_SPEAKERS: Speaker[] = [
 ]
 
 export function SpeakersGrid({ speakers = DEFAULT_SPEAKERS }: { speakers?: Speaker[] }) {
+  const m = useAiventMessages().sections.speakers
   return (
     <Section className="pt-0">
       <Container>
         <div className="flex items-end justify-between gap-6">
           <div>
-            <div className="text-sm font-semibold text-aivent-secondary">Speakers</div>
+            <div className="text-sm font-semibold text-aivent-secondary">{m.eyebrow}</div>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              Meet the visionaries
+              {m.title}
             </h2>
           </div>
         </div>
@@ -61,4 +63,3 @@ export function SpeakersGrid({ speakers = DEFAULT_SPEAKERS }: { speakers?: Speak
     </Section>
   )
 }
-

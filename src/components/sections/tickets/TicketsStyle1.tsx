@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '../../../lib/cn'
+import { useAiventMessages } from '../../../i18n/provider'
 import { Button } from '../../primitives/Button'
 import { Container } from '../../primitives/Container'
 import { Section } from '../../primitives/Section'
@@ -23,16 +24,17 @@ const DEFAULT_TICKETS: Ticket[] = [
 ]
 
 export function TicketsStyle1({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[] }) {
+  const m = useAiventMessages().sections.tickets
   return (
     <Section>
       <Container>
         <div>
-          <div className="text-sm font-semibold text-aivent-secondary">Tickets</div>
+          <div className="text-sm font-semibold text-aivent-secondary">{m.eyebrow}</div>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-            Choose your pass
+            {m.title}
           </h2>
           <p className="mt-3 max-w-2xl text-sm text-aivent-muted">
-            Pricing for teams, builders, and leaders. Upgrade anytime.
+            {m.subtitle}
           </p>
         </div>
 
@@ -49,7 +51,7 @@ export function TicketsStyle1({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[
                 <div className="text-lg font-bold text-white">{t.name}</div>
                 {t.highlight ? (
                   <span className="rounded-full bg-aivent-primary/20 px-3 py-1 text-xs font-bold text-white">
-                    Popular
+                    {m.popular}
                   </span>
                 ) : null}
               </div>
@@ -64,7 +66,7 @@ export function TicketsStyle1({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[
               </ul>
               <div className="mt-8">
                 <Button variant={t.highlight ? 'primary' : 'ghost'} className="w-full">
-                  Buy {t.name}
+                  {m.buyPrefix} {t.name}
                 </Button>
               </div>
             </div>
@@ -74,4 +76,3 @@ export function TicketsStyle1({ tickets = DEFAULT_TICKETS }: { tickets?: Ticket[
     </Section>
   )
 }
-

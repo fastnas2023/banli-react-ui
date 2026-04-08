@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '../../../lib/cn'
+import { useAiventMessages } from '../../../i18n/provider'
 import { Button } from '../../primitives/Button'
 import { Container } from '../../primitives/Container'
 import { Section } from '../../primitives/Section'
@@ -55,16 +56,18 @@ export function ContactForm({
 }: {
   onSubmit?: (values: ContactValues) => Promise<void> | void
 }) {
+  const section = useAiventMessages().sections.contact
+  const msg = useAiventMessages().contactForm
   const [values, setValues] = React.useState<ContactValues>({ name: '', email: '', message: '' })
   const [errors, setErrors] = React.useState<Partial<Record<keyof ContactValues, string>>>({})
   const [submitting, setSubmitting] = React.useState(false)
 
   const validate = () => {
     const e: Partial<Record<keyof ContactValues, string>> = {}
-    if (!values.name.trim()) e.name = '请输入姓名'
-    if (!values.email.trim()) e.email = '请输入邮箱'
-    else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(values.email)) e.email = '邮箱格式不正确'
-    if (!values.message.trim()) e.message = '请输入消息内容'
+    if (!values.name.trim()) e.name = msg.errors.nameRequired
+    if (!values.email.trim()) e.email = msg.errors.emailRequired
+    else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(values.email)) e.email = msg.errors.emailInvalid
+    if (!values.message.trim()) e.message = msg.errors.messageRequired
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -74,12 +77,12 @@ export function ContactForm({
       <Container>
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <div className="text-sm font-semibold text-aivent-secondary">Contact</div>
+            <div className="text-sm font-semibold text-aivent-secondary">{section.eyebrow}</div>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              Let’s talk
+              {section.title}
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-aivent-muted">
-              想合作、赞助或咨询票务？给我们留言，我们会尽快回复。
+              {section.intro}
             </p>
           </div>
 
@@ -98,15 +101,15 @@ export function ContactForm({
           >
             <div className="grid gap-4 md:grid-cols-2">
               <Input
-                label="姓名"
-                placeholder="Your name"
+                label={msg.fields.name}
+                placeholder={msg.placeholders.name}
                 value={values.name}
                 error={errors.name}
                 onChange={(e) => setValues((v) => ({ ...v, name: e.target.value }))}
               />
               <Input
-                label="邮箱"
-                placeholder="you@example.com"
+                label={msg.fields.email}
+                placeholder={msg.placeholders.email}
                 value={values.email}
                 error={errors.email}
                 onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
@@ -115,8 +118,8 @@ export function ContactForm({
 
             <div className="mt-4">
               <Textarea
-                label="消息"
-                placeholder="How can we help?"
+                label={msg.fields.message}
+                placeholder={msg.placeholders.message}
                 value={values.message}
                 error={errors.message}
                 onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
@@ -125,10 +128,10 @@ export function ContactForm({
 
             <div className="mt-6 flex items-center justify-between">
               <div className="text-xs text-aivent-muted">
-                提交将调用 onSubmit 回调，方便你接入真实接口。
+                {msg.helper}
               </div>
               <Button type="submit" disabled={submitting}>
-                {submitting ? 'Sending…' : 'Send Message'}
+                {submitting ? msg.submit.sending : msg.submit.send}
               </Button>
             </div>
           </form>
@@ -137,4 +140,3 @@ export function ContactForm({
     </Section>
   )
 }
-

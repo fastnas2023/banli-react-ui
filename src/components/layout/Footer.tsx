@@ -1,34 +1,36 @@
 import * as React from 'react'
+import { useAiventMessages } from '../../i18n/provider'
 import { Container } from '../primitives/Container'
 
-const LINKS: Array<{ title: string; items: Array<{ label: string; href?: string }> }> = [
-  {
-    title: 'Event',
-    items: [
-      { label: 'About', href: '#about' },
-      { label: 'Speakers', href: '#speakers' },
-      { label: 'Schedule', href: '#schedule' },
-    ],
-  },
-  {
-    title: 'Resources',
-    items: [
-      { label: 'Tickets', href: '#tickets' },
-      { label: 'News', href: '#news' },
-      { label: 'Contact', href: '#contact' },
-    ],
-  },
-]
-
 export function Footer() {
+  const m = useAiventMessages().footer
+  const LINKS: Array<{ title: string; items: Array<{ label: string; href?: string }> }> = [
+    {
+      title: m.columns.event,
+      items: [
+        { label: m.links.about, href: '#about' },
+        { label: m.links.speakers, href: '#speakers' },
+        { label: m.links.schedule, href: '#schedule' },
+      ],
+    },
+    {
+      title: m.columns.resources,
+      items: [
+        { label: m.links.tickets, href: '#tickets' },
+        { label: m.links.news, href: '#news' },
+        { label: m.links.contact, href: '#contact' },
+      ],
+    },
+  ]
+
   return (
     <footer className="border-t border-aivent-border bg-aivent-bg">
       <Container>
         <div className="grid gap-10 py-14 md:grid-cols-3">
           <div>
-            <div className="text-lg font-bold">AIvent</div>
+            <div className="text-lg font-bold">{m.brand}</div>
             <p className="mt-3 max-w-sm text-sm text-aivent-muted">
-              A modern event template, rebuilt as a reusable React component library.
+              {m.description}
             </p>
           </div>
 
@@ -49,11 +51,12 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-2 border-t border-aivent-border py-6 text-xs text-aivent-muted md:flex-row md:items-center md:justify-between">
-          <div>© {new Date().getFullYear()} AIvent. All rights reserved.</div>
-          <div>Built with React + Tailwind + Storybook.</div>
+          <div>
+            © {new Date().getFullYear()} {m.brand}. {m.rights}
+          </div>
+          <div>{m.builtWith}</div>
         </div>
       </Container>
     </footer>
   )
 }
-

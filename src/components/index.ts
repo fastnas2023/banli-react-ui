@@ -35,4 +35,4 @@ export * from './pages/NewsSinglePage'
 export * from './pages/ContactPage'
 
 export * from './ui'
-
+export * from '../i18n'

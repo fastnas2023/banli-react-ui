@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '../../lib/cn'
+import { useAiventMessages } from '../../i18n/provider'
 import { Container } from '../primitives/Container'
 import { Section } from '../primitives/Section'
 
@@ -45,6 +46,7 @@ const DEFAULT_DAYS: ScheduleDay[] = [
 ]
 
 export function ScheduleTabs({ days = DEFAULT_DAYS }: { days?: ScheduleDay[] }) {
+  const m = useAiventMessages().sections.schedule
   const [active, setActive] = React.useState(0)
   const day = days[active]
 
@@ -53,9 +55,9 @@ export function ScheduleTabs({ days = DEFAULT_DAYS }: { days?: ScheduleDay[] }) 
       <Container>
         <div className="flex items-end justify-between gap-6">
           <div>
-            <div className="text-sm font-semibold text-aivent-secondary">Schedule</div>
+            <div className="text-sm font-semibold text-aivent-secondary">{m.eyebrow}</div>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              5 Days of AI excellence
+              {m.title}
             </h2>
           </div>
         </div>
@@ -100,4 +102,3 @@ export function ScheduleTabs({ days = DEFAULT_DAYS }: { days?: ScheduleDay[] }) 
     </Section>
   )
 }
-
