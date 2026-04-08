@@ -37,3 +37,29 @@ body {
   @apply bg-aivent-bg text-aivent-text antialiased;
 }
 
+/* Motion tokens（统一动效时长/缓动）
+   组件层尽量只使用 transform/opacity 动效，避免 layout 抖动。 */
+:root {
+  --aivent-motion-duration-fast: 150ms;
+  --aivent-motion-duration: 220ms;
+  --aivent-motion-duration-slow: 320ms;
+  --aivent-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --aivent-motion-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* 全局动效降级开关（由 AiventMotionProvider 写入 data-aivent-motion） */
+:root[data-aivent-motion='off'] *,
+:root[data-aivent-motion='off'] *::before,
+:root[data-aivent-motion='off'] *::after {
+  animation: none !important;
+  transition-duration: 0ms !important;
+  scroll-behavior: auto !important;
+}
+
+:root[data-aivent-motion='reduced'] *,
+:root[data-aivent-motion='reduced'] *::before,
+:root[data-aivent-motion='reduced'] *::after {
+  animation-duration: 1ms !important;
+  transition-duration: 50ms !important;
+  scroll-behavior: auto !important;
+}

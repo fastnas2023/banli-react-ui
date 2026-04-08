@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { cn } from '../../../lib/cn'
 import { useAiventMessages } from '../../../i18n/provider'
+import { useAiventMotion } from '../../../motion/provider'
 import { Badge } from '../../primitives/Badge'
 import { Button } from '../../primitives/Button'
 import { Container } from '../../primitives/Container'
@@ -19,6 +20,7 @@ export function HeroSlider({
   className?: string
 }) {
   const m = useAiventMessages().hero
+  const motion = useAiventMotion()
   const scrollerRef = React.useRef<HTMLDivElement | null>(null)
   const [index, setIndex] = React.useState(0)
 
@@ -27,7 +29,7 @@ export function HeroSlider({
     if (!el) return
     const clamped = Math.max(0, Math.min(slides.length - 1, i))
     const child = el.children.item(clamped) as HTMLElement | null
-    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+    child?.scrollIntoView({ behavior: motion.enabled ? 'smooth' : 'auto', block: 'nearest', inline: 'start' })
     setIndex(clamped)
   }
 
@@ -37,7 +39,10 @@ export function HeroSlider({
 
       <div
         ref={scrollerRef}
-        className="relative flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className={cn(
+          'relative flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+          motion.enabled ? 'scroll-smooth' : ''
+        )}
       >
         {slides.map((s, i) => (
           <div key={i} className="relative h-[540px] w-full flex-none snap-start md:h-[620px]">
@@ -94,7 +99,7 @@ export function HeroSlider({
               <button
                 key={i}
                 className={cn(
-                  'h-2 w-7 rounded-full border border-aivent-border transition',
+                  'h-2 w-7 rounded-full border border-aivent-border transition duration-fast ease-aivent-out',
                   i === index ? 'bg-aivent-primary' : 'bg-white/10 hover:bg-white/20'
                 )}
                 onClick={() => scrollTo(i)}

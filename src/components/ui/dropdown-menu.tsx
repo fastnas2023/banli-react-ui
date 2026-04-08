@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import { cn } from '../../lib/cn'
+import { useAiventMotion } from '../../motion/provider'
 
 export const DropdownMenu = DropdownMenuPrimitive.Root
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
@@ -14,20 +15,32 @@ export const DropdownMenuContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
 >(({ className, sideOffset = 8, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
+    <DropdownMenuContentInner ref={ref} sideOffset={sideOffset} className={className} {...props} />
+  </DropdownMenuPrimitive.Portal>
+))
+
+DropdownMenuContent.displayName = 'DropdownMenuContent'
+
+const DropdownMenuContentInner = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
+>(({ className, sideOffset = 8, ...props }, ref) => {
+  const motion = useAiventMotion()
+  return (
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
         'z-50 min-w-44 overflow-hidden rounded-xl2 border border-aivent-border bg-aivent-panel p-1 text-sm text-aivent-text shadow-glow',
-        'animate-in fade-in-0 zoom-in-95',
+        motion.enabled ? 'animate-in fade-in-0 zoom-in-95' : '',
         className
       )}
       {...props}
     />
-  </DropdownMenuPrimitive.Portal>
-))
+  )
+})
 
-DropdownMenuContent.displayName = 'DropdownMenuContent'
+DropdownMenuContentInner.displayName = 'DropdownMenuContentInner'
 
 export const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
@@ -58,4 +71,3 @@ export const DropdownMenuSeparator = React.forwardRef<
 ))
 
 DropdownMenuSeparator.displayName = 'DropdownMenuSeparator'
-

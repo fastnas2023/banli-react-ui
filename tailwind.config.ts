@@ -26,8 +26,16 @@ export default {
       borderRadius: {
         xl2: '1.25rem',
       },
+      transitionDuration: {
+        fast: 'var(--aivent-motion-duration-fast)',
+        base: 'var(--aivent-motion-duration)',
+        slow: 'var(--aivent-motion-duration-slow)',
+      },
+      transitionTimingFunction: {
+        'aivent-out': 'var(--aivent-motion-ease-out)',
+        'aivent-in': 'var(--aivent-motion-ease-in)',
+      },
     },
   },
   plugins: [],
 } satisfies Config
-

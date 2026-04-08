@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { cn } from '../../lib/cn'
+import { useAiventMotion } from '../../motion/provider'
 
 export const Dialog = DialogPrimitive.Root
 export const DialogTrigger = DialogPrimitive.Trigger
@@ -26,19 +27,31 @@ export const DialogContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        'fixed left-1/2 top-1/2 z-50 w-[min(520px,calc(100%-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-xl2 border border-aivent-border bg-aivent-panel p-6 text-aivent-text shadow-glow outline-none',
-        'animate-in fade-in-0 zoom-in-95',
-        className
-      )}
-      {...props}
-    />
+    <DialogContentInner ref={ref} className={className} {...props} />
   </DialogPortal>
 ))
 
 DialogContent.displayName = 'DialogContent'
+
+const DialogContentInner = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, ...props }, ref) => {
+  const motion = useAiventMotion()
+  return (
+    <DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        'fixed left-1/2 top-1/2 z-50 w-[min(520px,calc(100%-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-xl2 border border-aivent-border bg-aivent-panel p-6 text-aivent-text shadow-glow outline-none',
+        motion.enabled ? 'animate-in fade-in-0 zoom-in-95' : '',
+        className
+      )}
+      {...props}
+    />
+  )
+})
+
+DialogContentInner.displayName = 'DialogContentInner'
 
 export const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
