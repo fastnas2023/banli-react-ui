@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { DayPicker, type DayPickerSingleProps } from 'react-day-picker'
+import { DayPicker, type DayPickerProps } from 'react-day-picker'
 import { cn } from '../../lib/cn'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 
@@ -41,7 +41,7 @@ export type DatePickerProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>
   /**
    * 透传给 react-day-picker（已固定 mode=single，并由组件控制 selected/onSelect）
    */
-  dayPickerProps?: Omit<DayPickerSingleProps, 'mode' | 'selected' | 'onSelect' | 'disabled'>
+  dayPickerProps?: Omit<DayPickerProps, 'mode' | 'selected' | 'onSelect'>
 }
 
 function defaultFormat(date: Date) {
@@ -136,4 +136,3 @@ export function DatePicker({
     </Popover>
   )
 }
-

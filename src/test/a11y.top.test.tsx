@@ -32,9 +32,7 @@ describe('a11y smoke (top components)', () => {
       </div>
     )
 
-    const results = await axe(document.body, {
-      ...axeRules,
-    } as any)
+    const results = await axe(document.body, axeRules)
     expect(results).toHaveNoViolations()
   })
 
@@ -43,7 +41,7 @@ describe('a11y smoke (top components)', () => {
     render(<Select options={[{ label: 'A', value: 'a' }]} defaultValue="a" />)
 
     await user.click(screen.getByRole('button'))
-    const results = await axe(document.body, axeRules as any)
+    const results = await axe(document.body, axeRules)
     expect(results).toHaveNoViolations()
   })
 
@@ -63,7 +61,7 @@ describe('a11y smoke (top components)', () => {
     )
 
     await user.click(screen.getByRole('button', { name: /open/i }))
-    const results = await axe(document.body, axeRules as any)
+    const results = await axe(document.body, axeRules)
     expect(results).toHaveNoViolations()
   })
 
@@ -93,7 +91,7 @@ describe('a11y smoke (top components)', () => {
     const cascaderTrigger = screen.getByRole('button', { name: /cascader/i })
     await user.click(cascaderTrigger)
 
-    const results = await axe(document.body, axeRules as any)
+    const results = await axe(document.body, axeRules)
     expect(results).toHaveNoViolations()
   })
 })

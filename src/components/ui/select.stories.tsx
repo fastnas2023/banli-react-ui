@@ -24,22 +24,24 @@ export const Basic: Story = {
 
 export const Controlled: Story = {
   render: () => {
-    const [v, setV] = React.useState('a')
-    return (
-      <div className="bg-aivent-bg p-16 text-aivent-text">
-        <div className="flex items-center gap-4">
-          <Select
-            value={v}
-            onChange={setV}
-            options={[
-              { label: 'Option A', value: 'a' },
-              { label: 'Option B', value: 'b' },
-            ]}
-          />
-          <span className="text-sm text-aivent-muted">value: {v}</span>
+    function Demo() {
+      const [v, setV] = React.useState('a')
+      return (
+        <div className="bg-aivent-bg p-16 text-aivent-text">
+          <div className="flex items-center gap-4">
+            <Select
+              value={v}
+              onChange={setV}
+              options={[
+                { label: 'Option A', value: 'a' },
+                { label: 'Option B', value: 'b' },
+              ]}
+            />
+            <span className="text-sm text-aivent-muted">value: {v}</span>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+    return <Demo />
   },
 }
-

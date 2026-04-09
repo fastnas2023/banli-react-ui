@@ -14,8 +14,8 @@ export function MobileMenu({
   onClose: () => void
   className?: string
 }) {
-  if (!open) return null
   const m = useAiventMessages().header
+  if (!open) return null
 
   return (
     <div className={cn('fixed inset-0 z-50', className)} role="dialog" aria-modal="true">

@@ -4,7 +4,7 @@ import { cn } from '../../lib/cn'
 export type DividerOrientation = 'horizontal' | 'vertical'
 export type DividerVariant = 'solid' | 'dashed'
 
-export type DividerProps = React.HTMLAttributes<HTMLElement> & {
+export type DividerProps = React.HTMLAttributes<HTMLDivElement> & {
   orientation?: DividerOrientation
   variant?: DividerVariant
   /**
@@ -14,7 +14,7 @@ export type DividerProps = React.HTMLAttributes<HTMLElement> & {
   decorative?: boolean
 }
 
-export const Divider = React.forwardRef<HTMLElement, DividerProps>(function Divider(
+export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(function Divider(
   { className, orientation = 'horizontal', variant = 'solid', decorative = true, ...props },
   ref
 ) {
@@ -23,7 +23,7 @@ export const Divider = React.forwardRef<HTMLElement, DividerProps>(function Divi
   if (orientation === 'vertical') {
     return (
       <div
-        ref={ref as any}
+        ref={ref}
         role="separator"
         aria-orientation="vertical"
         aria-hidden={decorative ? true : undefined}
@@ -34,12 +34,13 @@ export const Divider = React.forwardRef<HTMLElement, DividerProps>(function Divi
   }
 
   return (
-    <hr
-      ref={ref as any}
+    <div
+      ref={ref}
+      role="separator"
+      aria-orientation="horizontal"
       aria-hidden={decorative ? true : undefined}
-      className={cn('w-full border-0 border-t border-aivent-border', borderStyle, className)}
-      {...(props as any)}
+      className={cn('w-full border-t border-aivent-border', borderStyle, className)}
+      {...props}
     />
   )
 })
-

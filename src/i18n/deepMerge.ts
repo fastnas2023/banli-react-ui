@@ -6,26 +6,26 @@ export type PartialDeep<T> = {
       : T[K]
 }
 
-export function deepMerge<T extends Record<string, any>>(base: T, override?: PartialDeep<T>): T {
+export function deepMerge<T extends Record<string, unknown>>(base: T, override?: PartialDeep<T>): T {
   if (!override) return base
-  const out: any = Array.isArray(base) ? [...base] : { ...base }
+  const out = (Array.isArray(base) ? [...(base as unknown as unknown[])] : { ...base }) as T
+  const outRecord = out as unknown as Record<string, unknown>
 
   for (const k of Object.keys(override) as Array<keyof T>) {
-    const ov: any = (override as any)[k]
+    const ov = override[k]
     if (ov === undefined) continue
 
-    const bv: any = (base as any)[k]
+    const bv = base[k]
     if (Array.isArray(bv) && Array.isArray(ov)) {
-      out[k] = ov
+      outRecord[k as string] = ov as unknown
       continue
     }
     if (bv && typeof bv === 'object' && !Array.isArray(bv) && ov && typeof ov === 'object' && !Array.isArray(ov)) {
-      out[k] = deepMerge(bv, ov)
+      outRecord[k as string] = deepMerge(bv as Record<string, unknown>, ov as PartialDeep<Record<string, unknown>>)
       continue
     }
-    out[k] = ov
+    outRecord[k as string] = ov as unknown
   }
 
   return out
 }
-

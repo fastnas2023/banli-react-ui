@@ -34,7 +34,10 @@ type FormFieldContextValue<TFieldValues extends FieldValues = FieldValues> = {
 
 const FormFieldContext = React.createContext<FormFieldContextValue | null>(null)
 
-export function FormField<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = any>(
+export function FormField<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>(
   props: ControllerProps<TFieldValues, TName>
 ) {
   return (
@@ -102,6 +105,7 @@ export const FormLabel = React.forwardRef<
 FormLabel.displayName = 'FormLabel'
 
 export const FormControl = React.forwardRef<React.ElementRef<typeof Slot>, React.ComponentPropsWithoutRef<typeof Slot>>(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ className, id: _id, 'aria-describedby': ariaDescribedBy, ...props }, ref) => {
     const { error, formItemId, formMessageId } = useFormField()
     const describedBy = [ariaDescribedBy, error ? formMessageId : null].filter(Boolean).join(' ') || undefined
@@ -121,6 +125,7 @@ export const FormControl = React.forwardRef<React.ElementRef<typeof Slot>, React
 FormControl.displayName = 'FormControl'
 
 export const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ className, children, id: _id, ...props }, ref) => {
     const { error, formMessageId } = useFormField()
     const body = error?.message ? String(error.message) : children

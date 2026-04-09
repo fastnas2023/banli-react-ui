@@ -16,9 +16,8 @@ const MotionContext = React.createContext<MotionState>({
 
 function getPrefersReducedMotion() {
   if (typeof window === 'undefined') return false
-  const mm = (window as any).matchMedia
-  if (typeof mm !== 'function') return false
-  return mm('(prefers-reduced-motion: reduce)').matches
+  if (typeof window.matchMedia !== 'function') return false
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 function resolveMode(mode: MotionMode): MotionState {

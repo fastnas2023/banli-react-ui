@@ -54,7 +54,10 @@ type CheckboxContextValue = {
 
 const CheckboxContext = React.createContext<CheckboxContextValue | null>(null)
 
-export type CheckboxRootProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
+export type CheckboxRootProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'onChange' | 'value' | 'defaultValue'
+> & {
   checked?: boolean
   defaultChecked?: boolean
   onCheckedChange?: (checked: boolean) => void
@@ -90,12 +93,16 @@ export const CheckboxRoot = React.forwardRef<HTMLButtonElement, CheckboxRootProp
     })
 
     const checkedRef = React.useRef(isChecked)
-    // 同步更新：避免在紧接着的键盘事件中读到旧值（useEffect 可能尚未执行）
-    checkedRef.current = isChecked
+    // 同步 ref：避免在紧接着的键盘事件中读到旧值（useEffect 会在 render 后更新）
+    React.useEffect(() => {
+      checkedRef.current = isChecked
+    }, [isChecked])
 
     const toggle = React.useCallback(() => {
       if (disabled) return
-      setIsChecked(!checkedRef.current)
+      const next = !checkedRef.current
+      checkedRef.current = next
+      setIsChecked(next)
     }, [disabled, setIsChecked])
 
     const ignoreNextClickRef = React.useRef(false)

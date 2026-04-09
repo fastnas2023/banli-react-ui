@@ -11,18 +11,20 @@ it('reveals section when it enters viewport (motion enabled)', async () => {
   const observe = vi.fn()
 
   // 最小可用的 IntersectionObserver mock：observe 时立刻触发 inView=true
-  ;(globalThis as any).IntersectionObserver = class {
-    private cb: any
-    constructor(cb: any) {
+  globalThis.IntersectionObserver = (class {
+    private cb: IntersectionObserverCallback
+
+    constructor(cb: IntersectionObserverCallback) {
       this.cb = cb
     }
     observe(el: Element) {
       observe()
-      this.cb([{ isIntersecting: true, target: el }])
+      const entry = { isIntersecting: true, target: el } as IntersectionObserverEntry
+      this.cb([entry], this as unknown as IntersectionObserver)
     }
     disconnect() {}
     unobserve() {}
-  }
+  } as unknown as typeof IntersectionObserver)
 
   render(
     <AiventMotionProvider motion="full">
@@ -39,12 +41,12 @@ it('reveals section when it enters viewport (motion enabled)', async () => {
 })
 
 it('does not apply reveal classes when motion is off', () => {
-  ;(globalThis as any).IntersectionObserver = class {
+  globalThis.IntersectionObserver = (class {
     constructor() {}
     observe() {}
     disconnect() {}
     unobserve() {}
-  }
+  } as unknown as typeof IntersectionObserver)
 
   render(
     <AiventMotionProvider motion="off">

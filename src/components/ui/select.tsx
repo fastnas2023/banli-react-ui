@@ -224,7 +224,8 @@ SelectValue.displayName = 'SelectValue'
 
 export type SelectContentProps = React.HTMLAttributes<HTMLDivElement>
 
-export const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(({ className, children, onKeyDown, ...props }, ref) => {
+export const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(
+  ({ className, children, onKeyDown, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, ...props }, ref) => {
   const ctx = React.useContext(SelectContext)
   if (!ctx) throw new Error('SelectContent must be used within SelectRoot')
 
@@ -248,9 +249,7 @@ export const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps
         else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node
       }}
       role="listbox"
-      aria-label={
-        (props as any)['aria-label'] ?? ((props as any)['aria-labelledby'] ? undefined : 'Select options')
-      }
+      aria-label={ariaLabel ?? (ariaLabelledBy ? undefined : 'Select options')}
       tabIndex={-1}
       className={cn(
         'z-50 mt-2 min-w-44 overflow-hidden rounded-xl2 border border-aivent-border bg-aivent-panel p-1 text-sm text-aivent-text shadow-glow outline-none',

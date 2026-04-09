@@ -42,7 +42,7 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(function Icon(
 ) {
   const px = typeof size === 'number' ? size : sizeMap[size]
   const href = spriteUrl ? `${spriteUrl}#${name}` : `#${name}`
-  const hasLabel = Boolean(title) || Boolean((props as any)['aria-label'])
+  const hasLabel = Boolean(title) || Boolean(props['aria-label'])
   const decorative = !hasLabel
 
   return (

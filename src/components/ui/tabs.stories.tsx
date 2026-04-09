@@ -23,20 +23,22 @@ export const Basic: Story = {
 
 export const Controlled: Story = {
   render: () => {
-    const [v, setV] = React.useState('overview')
-    return (
-      <div className="bg-aivent-bg p-16 text-aivent-text">
-        <Tabs
-          value={v}
-          onChange={setV}
-          options={[
-            { label: 'Overview', value: 'overview', content: <div>Overview content</div> },
-            { label: 'Specs', value: 'specs', content: <div>Specs content</div> },
-          ]}
-        />
-        <div className="mt-4 text-sm text-aivent-muted">value: {v}</div>
-      </div>
-    )
+    function Demo() {
+      const [v, setV] = React.useState('overview')
+      return (
+        <div className="bg-aivent-bg p-16 text-aivent-text">
+          <Tabs
+            value={v}
+            onChange={setV}
+            options={[
+              { label: 'Overview', value: 'overview', content: <div>Overview content</div> },
+              { label: 'Specs', value: 'specs', content: <div>Specs content</div> },
+            ]}
+          />
+          <div className="mt-4 text-sm text-aivent-muted">value: {v}</div>
+        </div>
+      )
+    }
+    return <Demo />
   },
 }
-

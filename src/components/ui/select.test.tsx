@@ -32,7 +32,7 @@ it('opens select and selects option by keyboard', async () => {
   trigger.focus()
   await user.keyboard('{Enter}')
 
-  const listbox = await screen.findByRole('listbox')
+  await screen.findByRole('listbox')
   // move to Option B and select
   await user.keyboard('{ArrowDown}{Enter}')
 

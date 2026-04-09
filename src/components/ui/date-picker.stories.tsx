@@ -16,19 +16,17 @@ export const Basic: Story = {
 
 export const Controlled: Story = {
   render: () => {
-    const [v, setV] = React.useState<Date | undefined>(new Date(2026, 0, 15))
-    return (
-      <div className="bg-aivent-bg p-16 text-aivent-text">
-        <div className="flex items-center gap-4">
-          <DatePicker
-            value={v}
-            onChange={setV}
-            dayPickerProps={{ defaultMonth: new Date(2026, 0, 1) }}
-          />
-          <span className="text-sm text-aivent-muted">value: {v ? v.toDateString() : 'undefined'}</span>
+    function Demo() {
+      const [v, setV] = React.useState<Date | undefined>(new Date(2026, 0, 15))
+      return (
+        <div className="bg-aivent-bg p-16 text-aivent-text">
+          <div className="flex items-center gap-4">
+            <DatePicker value={v} onChange={setV} dayPickerProps={{ defaultMonth: new Date(2026, 0, 1) }} />
+            <span className="text-sm text-aivent-muted">value: {v ? v.toDateString() : 'undefined'}</span>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+    return <Demo />
   },
 }
-

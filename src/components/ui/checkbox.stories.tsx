@@ -27,14 +27,16 @@ export const Basic: Story = {
 
 export const Controlled: Story = {
   render: () => {
-    const [v, setV] = React.useState(false)
-    return (
-      <div className="bg-aivent-bg p-16 text-aivent-text">
-        <Checkbox value={v} onChange={setV}>
-          Controlled: {String(v)}
-        </Checkbox>
-      </div>
-    )
+    function Demo() {
+      const [v, setV] = React.useState(false)
+      return (
+        <div className="bg-aivent-bg p-16 text-aivent-text">
+          <Checkbox value={v} onChange={setV}>
+            Controlled: {String(v)}
+          </Checkbox>
+        </div>
+      )
+    }
+    return <Demo />
   },
 }
-

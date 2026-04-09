@@ -55,30 +55,33 @@ export const Search: Story = {
 
 export const AsyncLoad: Story = {
   render: () => {
-    const [opts, setOpts] = React.useState<CascaderOption[]>([
-      { label: '浙江', value: 'zj', isLeaf: false },
-      { label: '江苏', value: 'js', isLeaf: false },
-    ])
+    function Demo() {
+      const [opts, setOpts] = React.useState<CascaderOption[]>([
+        { label: '浙江', value: 'zj', isLeaf: false },
+        { label: '江苏', value: 'js', isLeaf: false },
+      ])
 
-    return (
-      <div className="bg-aivent-bg p-16 text-aivent-text">
-        <Cascader
-          options={opts}
-          placeholder="异步加载下一列"
-          loadData={async (selected) => {
-            await new Promise((r) => setTimeout(r, 300))
-            const last = selected[selected.length - 1]
-            if (!last) return
-            last.children = [
-              { label: `${last.label as string} - 子项 A`, value: `${last.value}-a` },
-              { label: `${last.label as string} - 子项 B`, value: `${last.value}-b` },
-            ]
-            // 为了触发重渲染，创建新数组（也兼容原地 mutation 场景）
-            setOpts((prev) => [...prev])
-          }}
-        />
-      </div>
-    )
+      return (
+        <div className="bg-aivent-bg p-16 text-aivent-text">
+          <Cascader
+            options={opts}
+            placeholder="异步加载下一列"
+            loadData={async (selected) => {
+              await new Promise((r) => setTimeout(r, 300))
+              const last = selected[selected.length - 1]
+              if (!last) return
+              last.children = [
+                { label: `${String(last.label)} - 子项 A`, value: `${last.value}-a` },
+                { label: `${String(last.label)} - 子项 B`, value: `${last.value}-b` },
+              ]
+              // 为了触发重渲染，创建新数组（也兼容原地 mutation 场景）
+              setOpts((prev) => [...prev])
+            }}
+          />
+        </div>
+      )
+    }
+
+    return <Demo />
   },
 }
-

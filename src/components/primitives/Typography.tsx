@@ -63,14 +63,14 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(functio
   { as, className, variant = 'body', size, ...props },
   ref
 ) {
-  const Tag = (as ?? defaultAs[variant]) as any
+  const Tag = as ?? defaultAs[variant]
 
   return (
-    <Tag
-      ref={ref as any}
-      className={cn(variantClass[variant], size ? sizeClass[size] : undefined, className)}
-      {...props}
-    />
+    React.createElement(Tag, {
+      ...props,
+      ref,
+      className: cn(variantClass[variant], size ? sizeClass[size] : undefined, className),
+    })
   )
 })
 
@@ -88,7 +88,15 @@ export const Title = React.forwardRef<
   HTMLElement,
   Omit<TypographyProps, 'variant' | 'as'> & { level?: 1 | 2 | 3 | 4 | 5 | 6 }
 >(function Title({ level = 2, ...props }, ref) {
-  const variant = (`h${level}` as unknown) as TypographyVariant
+  const variantMap: Record<1 | 2 | 3 | 4 | 5 | 6, TypographyVariant> = {
+    1: 'h1',
+    2: 'h2',
+    3: 'h3',
+    4: 'h4',
+    5: 'h5',
+    6: 'h6',
+  }
+  const variant = variantMap[level]
   return <Typography ref={ref} variant={variant} {...props} />
 })
 

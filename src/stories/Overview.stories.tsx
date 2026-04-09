@@ -23,7 +23,7 @@ import {
   Switch,
   Table,
   Tabs,
-  Text,
+  Typography,
   Textarea,
   Title,
   Toast,
@@ -35,6 +35,7 @@ import {
   TooltipContent,
   TooltipTrigger,
   Tree,
+  Upload,
   Form,
   FormControl,
   FormField,
@@ -62,27 +63,28 @@ type Story = StoryObj
 
 export const KitchenSink: Story = {
   render: () => {
-    const [toastOpen, setToastOpen] = React.useState(false)
-    const [date, setDate] = React.useState<Date | undefined>(new Date('2026-01-15'))
-    const [uploadFiles, setUploadFiles] = React.useState<File[]>([])
-    const [treeSearch, setTreeSearch] = React.useState('')
-    const [cascaderValue, setCascaderValue] = React.useState<string[]>(['zj', 'hz'])
+    function Demo() {
+      const [toastOpen, setToastOpen] = React.useState(false)
+      const [date, setDate] = React.useState<Date | undefined>(new Date('2026-01-15'))
+      const [, setUploadFiles] = React.useState<File[]>([])
+      const [treeSearch, setTreeSearch] = React.useState('')
+      const [cascaderValue, setCascaderValue] = React.useState<string[]>(['zj', 'hz'])
 
-    const form = useForm<{ email: string }>({ defaultValues: { email: '' } })
+      const form = useForm<{ email: string }>({ defaultValues: { email: '' } })
 
-    const columns = React.useMemo<ColumnDef<{ name: string; role: string }>[]>(
-      () => [
-        { header: 'Name', accessorKey: 'name' },
-        { header: 'Role', accessorKey: 'role' },
-      ],
-      []
-    )
+      const columns = React.useMemo<ColumnDef<{ name: string; role: string }>[]>(
+        () => [
+          { header: 'Name', accessorKey: 'name' },
+          { header: 'Role', accessorKey: 'role' },
+        ],
+        []
+      )
 
-    return (
+      return (
       <div className="space-y-10 p-8">
         <div className="space-y-2">
           <Title level={2}>BANLI UI</Title>
-          <Text tone="muted">快速总览（docs / a11y / 受控&非受控示例）。</Text>
+          <Typography variant="muted">快速总览（docs / a11y / 受控&非受控示例）。</Typography>
         </div>
 
         <Divider />
@@ -127,8 +129,8 @@ export const KitchenSink: Story = {
             <Tabs
               defaultValue="tab1"
               options={[
-                { label: 'Tab 1', value: 'tab1' },
-                { label: 'Tab 2', value: 'tab2' },
+                { label: 'Tab 1', value: 'tab1', content: <div>Tab1</div> },
+                { label: 'Tab 2', value: 'tab2', content: <div>Tab2</div> },
               ]}
             />
           </Space>
@@ -191,12 +193,12 @@ export const KitchenSink: Story = {
           </Space>
 
           <Space size="md" wrap align="center">
-            <Upload value={uploadFiles} onChange={setUploadFiles} />
+            <Upload onDrop={setUploadFiles} />
           </Space>
 
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
-              <Text tone="muted">Tree（搜索 + 异步加载示例见 Tree.stories）</Text>
+              <Typography variant="muted">Tree（搜索 + 异步加载示例见 Tree.stories）</Typography>
               <Tree
                 data={[
                   { key: 'p', title: 'Parent', children: [{ key: 'c', title: 'Child' }] },
@@ -209,7 +211,7 @@ export const KitchenSink: Story = {
             </div>
 
             <div className="space-y-2">
-              <Text tone="muted">Cascader（搜索 + 异步加载示例见 Cascader.stories）</Text>
+              <Typography variant="muted">Cascader（搜索 + 异步加载示例见 Cascader.stories）</Typography>
               <Cascader
                 showSearch
                 options={[
@@ -253,7 +255,9 @@ export const KitchenSink: Story = {
           </form>
         </div>
       </div>
-    )
+      )
+    }
+
+    return <Demo />
   },
 }
-

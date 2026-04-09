@@ -52,7 +52,10 @@ type SwitchContextValue = {
 
 const SwitchContext = React.createContext<SwitchContextValue | null>(null)
 
-export type SwitchRootProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
+export type SwitchRootProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'onChange' | 'value' | 'defaultValue'
+> & {
   checked?: boolean
   defaultChecked?: boolean
   onCheckedChange?: (checked: boolean) => void
@@ -177,4 +180,3 @@ export function Switch({ value, defaultValue, onChange, className, ...props }: S
     </SwitchRoot>
   )
 }
-
