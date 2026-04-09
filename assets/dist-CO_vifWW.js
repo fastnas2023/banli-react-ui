@@ -1,0 +1,1 @@
+import{a as e,n as t}from"./chunk-BneVvdWh.js";import{t as n}from"./react-B_0iYUWB.js";import{_ as r,g as i}from"./dist-CC4wUgA4.js";function a(e){let[t,n]=o.useState(s());return r(()=>{e||n(e=>e??String(c++))},[e]),e||(t?`radix-${t}`:``)}var o,s,c,l=t((()=>{o=e(n(),1),i(),s=o.useId||(()=>void 0),c=0}));export{a as n,l as t};
