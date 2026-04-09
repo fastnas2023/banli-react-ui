@@ -99,7 +99,7 @@ function useControllableState<T>(
 function getNodeText(node: React.ReactNode): string {
   if (typeof node === 'string' || typeof node === 'number') return String(node)
   if (Array.isArray(node)) return node.map(getNodeText).join('')
-  if (React.isValidElement(node)) return getNodeText(node.props?.children)
+  if (React.isValidElement<{ children?: React.ReactNode }>(node)) return getNodeText(node.props?.children)
   return ''
 }
 
@@ -403,7 +403,7 @@ export function Tree({
                 }}
                 className={cn(
                   'flex items-center gap-2 rounded-md px-2 py-1 text-sm outline-none',
-                  'focus-visible:ring-2 focus-visible:ring-aivent-primary/60',
+                  'focus-visible:ring-2 focus-visible:ring-banli-primary/60',
                   node.disabled ? 'cursor-not-allowed opacity-60' : 'cursor-default',
                   selected ? 'bg-aivent-primary/10' : 'hover:bg-aivent-primary/5'
                 )}

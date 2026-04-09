@@ -14,7 +14,7 @@ export function Button({
   size?: ButtonSize
 }) {
   const base =
-    'inline-flex items-center justify-center rounded-lg font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-aivent-secondary/60 disabled:pointer-events-none disabled:opacity-50'
+    'inline-flex items-center justify-center rounded-lg font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-banli-secondary/60 disabled:pointer-events-none disabled:opacity-50'
 
   const variants: Record<ButtonVariant, string> = {
     primary: 'bg-aivent-primary text-white hover:brightness-110 shadow-glow',
@@ -30,4 +30,3 @@ export function Button({
 
   return <button className={cn(base, variants[variant], sizes[size], className)} {...props} />
 }
-

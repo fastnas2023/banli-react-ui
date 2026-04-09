@@ -81,3 +81,27 @@ it('async load shows second column after loadData', async () => {
     expect(screen.getAllByRole('listbox').length).toBe(2)
   })
 })
+
+it('search filters options and selecting a search result triggers onChange', async () => {
+  const user = userEvent.setup()
+  const onChange = vi.fn()
+
+  const options: CascaderOption[] = [
+    { label: 'Zhejiang', value: 'zj', children: [{ label: 'Hangzhou', value: 'hz' }] },
+    { label: 'Jiangsu', value: 'js', children: [{ label: 'Nanjing', value: 'nj' }] },
+  ]
+
+  const { container } = render(<Cascader options={options} showSearch onChange={onChange} />)
+  const trigger = within(container).getByRole('button')
+
+  await user.click(trigger)
+  const searchInput = await screen.findByRole('textbox', { name: /搜索/i })
+  await user.type(searchInput, 'Nanj')
+
+  const results = await screen.findByRole('listbox', { name: /search results/i })
+  // click the matching path result
+  await user.click(within(results).getByRole('option', { name: /Jiangsu/i }))
+
+  expect(onChange).toHaveBeenCalledTimes(1)
+  expect(onChange).toHaveBeenCalledWith(['js', 'nj'], expect.any(Array))
+})

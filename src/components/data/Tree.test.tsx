@@ -68,3 +68,27 @@ it('renders children after async load when expanding a node', async () => {
   // Parent 应该处于展开态（ARIA）
   expect(screen.getByRole('treeitem', { name: 'Parent' })).toHaveAttribute('aria-expanded', 'true')
 })
+
+it('filters nodes when searching and auto-expands ancestors', async () => {
+  const user = userEvent.setup()
+  const data: TreeNode[] = [
+    {
+      key: 'p',
+      title: 'Parent',
+      children: [{ key: 'c', title: 'Child' }],
+    },
+    { key: 'x', title: 'Other' },
+  ]
+
+  render(<Tree data={data} showSearch />)
+
+  const input = screen.getByRole('textbox', { name: /tree search/i })
+  await user.type(input, 'Child')
+
+  // Child should be visible, and Parent should be auto-expanded due to search
+  expect(await screen.findByRole('treeitem', { name: 'Child' })).toBeInTheDocument()
+  expect(screen.getByRole('treeitem', { name: 'Parent' })).toHaveAttribute('aria-expanded', 'true')
+
+  // Non-matching root should be filtered out
+  expect(screen.queryByRole('treeitem', { name: 'Other' })).not.toBeInTheDocument()
+})

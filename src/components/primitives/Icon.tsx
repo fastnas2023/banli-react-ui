@@ -9,6 +9,11 @@ export type IconProps = Omit<React.SVGAttributes<SVGSVGElement>, 'children'> & {
    * `<symbol id="...">` 的 id，例如 `check`、`github-icon`
    */
   name: string
+  /**
+   * 可选：外部 sprite 的 URL（例如 `/icons.svg`）。
+   * - 未提供时默认引用页面内的 `#${name}`（配合 <IconSprite /> 使用）
+   */
+  spriteUrl?: string
   size?: IconSize
   variant?: IconVariant
   /**
@@ -20,9 +25,9 @@ export type IconProps = Omit<React.SVGAttributes<SVGSVGElement>, 'children'> & {
 const sizeMap: Record<Exclude<IconSize, number>, number> = { sm: 16, md: 20, lg: 24 }
 const variantClass: Record<IconVariant, string> = {
   inherit: '',
-  primary: 'text-aivent-primary',
-  secondary: 'text-aivent-secondary',
-  muted: 'text-aivent-muted',
+  primary: 'text-banli-primary',
+  secondary: 'text-banli-secondary',
+  muted: 'text-banli-muted',
   danger: 'text-red-400',
 }
 
@@ -32,11 +37,11 @@ const variantClass: Record<IconVariant, string> = {
  * - 提供 `title` 或 `aria-label` 后：`role="img"`
  */
 export const Icon = React.forwardRef<SVGSVGElement, IconProps>(function Icon(
-  { className, name, size = 'md', variant = 'inherit', title, ...props },
+  { className, name, spriteUrl, size = 'md', variant = 'inherit', title, ...props },
   ref
 ) {
   const px = typeof size === 'number' ? size : sizeMap[size]
-  const href = `/icons.svg#${name}`
+  const href = spriteUrl ? `${spriteUrl}#${name}` : `#${name}`
   const hasLabel = Boolean(title) || Boolean((props as any)['aria-label'])
   const decorative = !hasLabel
 
@@ -56,4 +61,3 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(function Icon(
     </svg>
   )
 })
-

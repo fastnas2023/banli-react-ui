@@ -93,7 +93,9 @@ export const SelectRoot = React.forwardRef<HTMLDivElement, SelectRootProps>(
     const [v, setV] = useControllableState<string | undefined>({
       value,
       defaultValue,
-      onChange: onValueChange,
+      onChange: (next) => {
+        if (next !== undefined) onValueChange?.(next)
+      },
     })
     const [open, setOpen] = React.useState(false)
     const triggerRef = React.useRef<HTMLButtonElement | null>(null)

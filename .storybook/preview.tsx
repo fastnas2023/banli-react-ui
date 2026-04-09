@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react-vite'
 import * as React from 'react'
 import '../src/styles/globals.css'
 import { AiventMotionProvider } from '../src/motion/provider'
+import { IconSprite } from '../src/components/primitives/IconSprite'
 
 const preview: Preview = {
   decorators: [
@@ -12,6 +13,7 @@ const preview: Preview = {
       }, [])
       return (
         <AiventMotionProvider motion="auto">
+          <IconSprite />
           <Story />
         </AiventMotionProvider>
       )

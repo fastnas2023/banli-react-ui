@@ -16,12 +16,12 @@ export type TypographyVariant =
 export type TypographySize = 'xs' | 'sm' | 'md' | 'lg'
 
 export type TypographyProps = React.HTMLAttributes<HTMLElement> & {
-  as?: keyof JSX.IntrinsicElements
+  as?: keyof React.JSX.IntrinsicElements
   variant?: TypographyVariant
   size?: TypographySize
 }
 
-const defaultAs: Record<TypographyVariant, keyof JSX.IntrinsicElements> = {
+const defaultAs: Record<TypographyVariant, keyof React.JSX.IntrinsicElements> = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
@@ -42,8 +42,8 @@ const variantClass: Record<TypographyVariant, string> = {
   h5: 'text-lg font-semibold text-white',
   h6: 'text-base font-semibold text-white',
   body: 'text-sm leading-relaxed text-white md:text-base',
-  muted: 'text-sm leading-relaxed text-aivent-muted md:text-base',
-  small: 'text-xs text-aivent-muted',
+  muted: 'text-sm leading-relaxed text-banli-muted md:text-base',
+  small: 'text-xs text-banli-muted',
   code: 'rounded bg-white/10 px-1.5 py-0.5 font-mono text-[0.85em] text-white',
 }
 
@@ -74,3 +74,23 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(functio
   )
 })
 
+/**
+ * Text：更直观的别名（默认 body）。
+ */
+export const Text = React.forwardRef<HTMLElement, Omit<TypographyProps, 'variant'>>(function Text(props, ref) {
+  return <Typography ref={ref} variant="body" {...props} />
+})
+
+/**
+ * Title：标题别名（level=1..6 对应 h1..h6）。
+ */
+export const Title = React.forwardRef<
+  HTMLElement,
+  Omit<TypographyProps, 'variant' | 'as'> & { level?: 1 | 2 | 3 | 4 | 5 | 6 }
+>(function Title({ level = 2, ...props }, ref) {
+  const variant = (`h${level}` as unknown) as TypographyVariant
+  return <Typography ref={ref} variant={variant} {...props} />
+})
+
+Text.displayName = 'Text'
+Title.displayName = 'Title'

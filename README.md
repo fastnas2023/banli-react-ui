@@ -1,9 +1,33 @@
-# BanLi React UI（Storybook + Tailwind）
+# banli-ui（Alpha）
 
 BanLi UI：**React + TypeScript** 组件库示例，使用 **Storybook** 展示，样式基于 **Tailwind**；静态资源（图片/字体）本地化以支持离线运行。
 
 作者：Jason Zhang  
 官网：https://www.cn111.net
+
+## 安装（Alpha）
+
+> 本仓库同时包含 Storybook 演示站点与组件库源码。若你通过 npm 使用：
+
+```bash
+npm i banli-ui
+```
+
+在应用入口注入一次（推荐放在 App 根部）：
+
+```tsx
+import 'banli-ui/styles.css'
+import { IconSprite } from 'banli-ui'
+
+export function App() {
+  return (
+    <>
+      <IconSprite />
+      {/* your app */}
+    </>
+  )
+}
+```
 
 ## 运行
 

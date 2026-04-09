@@ -84,7 +84,10 @@ export const RadioGroupRoot = React.forwardRef<HTMLDivElement, RadioGroupRootPro
     const [v, setV] = useControllableState<string | undefined>({
       value,
       defaultValue,
-      onChange: onValueChange,
+      onChange: (next) => {
+        // only emit when a concrete value is selected
+        if (next !== undefined) onValueChange?.(next)
+      },
     })
 
     const localRef = React.useRef<HTMLDivElement | null>(null)
@@ -250,4 +253,3 @@ export function RadioGroup({ options, value, defaultValue, onChange, ...props }:
     </RadioGroupRoot>
   )
 }
-

@@ -16,7 +16,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const base =
       'w-full rounded-lg border bg-black/20 text-white outline-none transition placeholder:text-white/30 ' +
-      'focus-visible:ring-2 focus-visible:ring-aivent-secondary/60 disabled:pointer-events-none disabled:opacity-50'
+      'focus-visible:ring-2 focus-visible:ring-banli-secondary/60 disabled:pointer-events-none disabled:opacity-50'
 
     const sizes: Record<TextareaSize, string> = {
       sm: 'min-h-[96px] px-3 py-2 text-sm',
@@ -35,7 +35,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         className={cn(
           base,
           sizes[size],
-          isInvalid ? 'border-red-500/70 focus:border-red-500' : 'border-aivent-border focus:border-aivent-secondary/70',
+          isInvalid ? 'border-red-500/70 focus:border-red-500' : 'border-aivent-border focus:border-banli-secondary/70',
           loading ? 'cursor-wait' : '',
           className
         )}
@@ -46,4 +46,3 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 )
 
 Textarea.displayName = 'Textarea'
-

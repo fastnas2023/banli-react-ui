@@ -17,7 +17,7 @@ export const Basic: Story = {}
 
 export const Variants: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-4 bg-aivent-bg p-6">
+    <div className="flex flex-wrap items-center gap-4 bg-banli-bg p-6">
       <Icon name="check" title="primary" variant="primary" />
       <Icon name="check" title="secondary" variant="secondary" />
       <Icon name="check" title="muted" variant="muted" />
@@ -28,7 +28,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-4 bg-aivent-bg p-6">
+    <div className="flex flex-wrap items-center gap-4 bg-banli-bg p-6">
       <Icon name="check" title="sm" size="sm" />
       <Icon name="check" title="md" size="md" />
       <Icon name="check" title="lg" size="lg" />
@@ -36,4 +36,3 @@ export const Sizes: Story = {
     </div>
   ),
 }
-

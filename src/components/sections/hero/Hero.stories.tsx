@@ -10,7 +10,7 @@ const bg2 = new URL('../../../assets/images/background/2.webp', import.meta.url)
 const bg3 = new URL('../../../assets/images/background/3.webp', import.meta.url).toString()
 const bg4 = new URL('../../../assets/images/background/4.webp', import.meta.url).toString()
 const bg5 = new URL('../../../assets/images/background/5.webp', import.meta.url).toString()
-const video2 = new URL('../../../assets/video/2.mp4', import.meta.url).toString()
+// 为优化 Storybook 体积：不在静态构建中打包视频资源（使用 posterImage 退化渲染）
 
 const meta: Meta = { title: 'Sections/Hero' }
 export default meta
@@ -32,7 +32,7 @@ export const VideoBackground: Story = {
   render: () => (
     <HeroVideo
       posterImage={bg1}
-      videoSrc={video2}
+      videoSrc={undefined}
       title="BANLI UI"
       subtitle="Reusable components, pages, and motion presets."
       dateText="WWW.CN111.NET"
@@ -70,7 +70,7 @@ export const VideoBackgroundWithCountdown: Story = {
   render: () => (
     <HeroVideo
       posterImage={bg4}
-      videoSrc={video2}
+      videoSrc={undefined}
       title="BANLI UI"
       subtitle="Polished components for real products."
       dateText="WWW.CN111.NET"
