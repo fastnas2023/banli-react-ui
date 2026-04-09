@@ -30,6 +30,9 @@ export function Table<TData extends RowData>({
   emptyText = 'No data',
   className,
 }: TableProps<TData>) {
+  // TanStack Table 的 useReactTable() 会返回不可安全 memo 的函数。
+  // 该告警来自 react-hooks/incompatible-library，对组件内部直接使用是可接受的。
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,
@@ -92,4 +95,3 @@ export function Table<TData extends RowData>({
     </div>
   )
 }
-

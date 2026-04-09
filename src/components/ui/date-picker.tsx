@@ -98,7 +98,7 @@ export function DatePicker({
           </span>
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-3" align="start">
+      <PopoverContent className="w-auto p-3" align="start" aria-label="Date picker">
         <DayPicker
           mode="single"
           selected={selected}

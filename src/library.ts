@@ -14,9 +14,12 @@ export * from './components/primitives/Avatar'
 export * from './components/primitives/Spinner'
 
 export * from './components/ui'
+// 新增通用组件（同时也会从 ./components/ui/index.ts 间接导出，这里显式列出便于查找）
+export * from './components/ui/pagination'
+export * from './components/ui/collapse'
+export * from './components/ui/breadcrumb'
 
 export * from './components/form/Form'
 export * from './components/data/Table'
 export * from './components/data/Tree'
 export * from './components/data/Cascader'
-

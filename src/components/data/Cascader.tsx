@@ -197,11 +197,19 @@ export function Cascader({
     return () => window.removeEventListener('pointerdown', onPointerDown)
   }, [open])
 
-  const selectedPath = React.useMemo(() => findPathByValues(internalOptions, selectedValue), [internalOptions, optionsTick, selectedValue])
+  const selectedPath = React.useMemo(() => {
+    // internalOptions 在 loadData 场景会被就地更新（例如写入 loading / children）。
+    // 这里显式读取 optionsTick 以便在引用不变时也能触发重新计算。
+    void optionsTick
+    return findPathByValues(internalOptions, selectedValue)
+  }, [internalOptions, optionsTick, selectedValue])
 
   const triggerText = selectedPath.length ? pathToText(selectedPath) : null
 
-  const columns = React.useMemo(() => getColumns(internalOptions, activeValues), [activeValues, internalOptions, optionsTick])
+  const columns = React.useMemo(() => {
+    void optionsTick
+    return getColumns(internalOptions, activeValues)
+  }, [activeValues, internalOptions, optionsTick])
 
   const isSearching = showSearch && sv.trim().length > 0
   const searchHits = React.useMemo(() => (isSearching ? buildSearchHits(internalOptions, filterOption, sv) : []), [filterOption, internalOptions, isSearching, sv])
