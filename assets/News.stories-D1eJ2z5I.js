@@ -1,8 +1,0 @@
-import{n as e}from"./chunk-BneVvdWh.js";import{t}from"./jsx-runtime-D16BNjX-.js";import{n,t as r}from"./NewsArticle-VS-OKH_L.js";import{n as i,t as a}from"./NewsGrid-3WC9luCO.js";var o,s,c,l,u,d;e((()=>{n(),i(),o=t(),s=new URL(`/banli-react-ui/assets/s2-BRuh19UL.webp`,``+import.meta.url).toString(),c={title:`Sections/News`},l={render:()=>(0,o.jsx)(a,{})},u={render:()=>(0,o.jsx)(r,{title:`Transformers in 2025 — What's Next?`,date:`May 27, 2025`,cover:s,content:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(`p`,{children:`Scaling laws, memory optimization, and new training recipes are reshaping what’s possible.`}),(0,o.jsx)(`p`,{children:`We’ll explore practical strategies for building reliable, safe, and delightful AI products.`})]})})},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
-  render: () => <NewsGrid />
-}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
-  render: () => <NewsArticle title="Transformers in 2025 — What's Next?" date="May 27, 2025" cover={cover} content={<>
-          <p>Scaling laws, memory optimization, and new training recipes are reshaping what’s possible.</p>
-          <p>We’ll explore practical strategies for building reliable, safe, and delightful AI products.</p>
-        </>} />
-}`,...u.parameters?.docs?.source}}},d=[`Grid`,`Article`]}))();export{u as Article,l as Grid,d as __namedExportsOrder,c as default};
